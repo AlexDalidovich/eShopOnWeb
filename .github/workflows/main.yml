@@ -1,0 +1,33 @@
+name: Build and deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      ResourceGroupName: e-shop-on-web
+      ResourceGroupLocation: "westeurope"
+
+    steps:
+    - uses: actions/checkout@main
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Build solution
+      run: dotnet build ./eShopOnWeb.sln --configuration Release
+
+    - uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+          echo "Azure resource group created"
+
+    - name: Deploy resource group
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        template: ./infrastructure.json
+        parameters: parameters.json storageAccountType=Standard_LRS
