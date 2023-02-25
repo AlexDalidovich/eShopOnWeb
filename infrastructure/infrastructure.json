@@ -11,11 +11,11 @@
         "properties": {
             "mode": "Incremental",
             "templateLink": {
-                "relativePath": "app-service-template.json",
+                "relativePath": "./app-service-template.json",
                 "contentVersion": "1.0.0.0"
             },
             "parametersLink": {
-                "uri": "app-service-parameters.json",
+                "uri": "./app-service-parameters.json",
                 "contentVersion": "1.0.0.0"
             }
         }
