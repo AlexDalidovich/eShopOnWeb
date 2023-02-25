@@ -30,10 +30,9 @@ jobs:
           az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
           echo "Azure resource group created"
 
-    - name: Deploy resource group
+    - name: Deploy resources
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION.subscriptionId }}
         resourceGroupName: ${{ env.ResourceGroupName }}
         template: ./infrastructure/infrastructure.json
-        parameters: storageAccountType=Standard_LRS
