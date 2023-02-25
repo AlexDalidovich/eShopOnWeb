@@ -36,4 +36,4 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION.subscriptionId }}
         resourceGroupName: ${{ env.ResourceGroupName }}
         template: ./infrastructure/infrastructure.json
-        parameters: parameters.json storageAccountType=Standard_LRS
+        parameters: storageAccountType=Standard_LRS
