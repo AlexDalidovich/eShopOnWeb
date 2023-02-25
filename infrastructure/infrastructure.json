@@ -11,11 +11,11 @@
         "properties": {
             "mode": "Incremental",
             "templateLink": {
-                "relativePath": "./app-service-template.json",
+                "uri": "https://raw.githubusercontent.com/AlexDalidovich/eShopOnWeb/main/infrastructure/app-service-template.json",
                 "contentVersion": "1.0.0.0"
             },
             "parametersLink": {
-                "uri": "./app-service-parameters.json",
+                "uri": "https://raw.githubusercontent.com/AlexDalidovich/eShopOnWeb/main/infrastructure/app-service-parameters.json",
                 "contentVersion": "1.0.0.0"
             }
         }
