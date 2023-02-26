@@ -15,7 +15,7 @@
             "value": "ASP-eShopOnWeb-a49a"
         },
         "serverFarmResourceGroup": {
-            "value": "eShopOnWeb"
+            "value": "e-shop-on-web"
         },
         "alwaysOn": {
             "value": true

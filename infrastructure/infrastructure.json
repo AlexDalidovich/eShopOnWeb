@@ -8,17 +8,17 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "name": "nestedTemplate1",
-        "properties": {
-            "mode": "Incremental",
-            "templateLink": {
-                "uri": "https://raw.githubusercontent.com/AlexDalidovich/eShopOnWeb/main/infrastructure/app-service-template.json",
-                "contentVersion": "1.0.0.0"
-            },
-            "parametersLink": {
-                "uri": "https://raw.githubusercontent.com/AlexDalidovich/eShopOnWeb/main/infrastructure/app-service-parameters.json",
-                "contentVersion": "1.0.0.0"
-            }
-        }
+      "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+              "uri": "https://raw.githubusercontent.com/AlexDalidovich/eShopOnWeb/main/infrastructure/app-service-template.json",
+              "contentVersion": "1.0.0.0"
+          },
+          "parametersLink": {
+              "uri": "https://raw.githubusercontent.com/AlexDalidovich/eShopOnWeb/main/infrastructure/app-service-parameters.json",
+              "contentVersion": "1.0.0.0"
+          }
+      }
     }
   ],
   "outputs": {
