@@ -46,8 +46,8 @@ jobs:
     # Run dotnet build and publish
     - name: dotnet build and publish
       run: |
-        dotnet restore ./eShopOnWeb.sln 
-        dotnet build ./eShopOnWeb.sln --configuration Release
+        dotnet restore ./src/Web/Web.csproj
+        dotnet build ./src/Web/Web.csproj --configuration Release
         dotnet publish ./src/Web/ -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
         
     # Deploy to Azure Web apps
