@@ -125,10 +125,13 @@
             "apiVersion": "2015-04-01",
             "location": "[parameters('location')]",
             "tags": {},
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+            ],
             "properties": {
                 "name": "[concat(parameters('hostingPlanName'), '-Autoscale')]",
                 "enabled": true,
-                "targetResourceUri": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "targetResourceUri": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
                 "profiles": [
                     {
                         "name": "Auto created default scale condition",
@@ -148,7 +151,7 @@
                                 "metricTrigger": {
                                     "metricName": "CpuPercentage",
                                     "metricNamespace": "microsoft.web/serverfarms",
-                                    "metricResourceUri": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                                    "metricResourceUri": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
                                     "operator": "GreaterThan",
                                     "statistic": "Average",
                                     "threshold": 70,
