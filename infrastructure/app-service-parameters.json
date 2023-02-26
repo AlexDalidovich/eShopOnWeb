@@ -46,6 +46,9 @@
         },
         "netFrameworkVersion": {
             "value": "v7.0"
+        },
+        "slotName": {
+            "value": "staging"
         }
     }
 }

@@ -46,6 +46,9 @@
         },
         "netFrameworkVersion": {
             "type": "string"
+        },
+        "slotName": {
+            "type": "string"
         }
     },
     "variables": {},
@@ -99,7 +102,71 @@
                 "virtualNetworkSubnetId": null,
                 "httpsOnly": true,
                 "publicNetworkAccess": "Enabled"
-            }
+            },
+            "resources": [
+                {
+                    "apiVersion": "2015-08-01",
+                    "name": "[parameters('slotName')]",
+                    "type": "slots",
+                    "tags": {
+                        "displayName": "webAppSlots"
+                    },
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
+                    ],
+                    "properties": {
+                    },
+                    "resources": []
+                }
+            ]
+        },
+        {
+            "apiVersion": "2015-04-01",
+            "location": "[parameters('location')]",
+            "tags": {},
+            "properties": {
+                "name": "[concat(parameters('hostingPlanName'), '-Autoscale')]",
+                "enabled": true,
+                "targetResourceUri": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "profiles": [
+                    {
+                        "name": "Auto created default scale condition",
+                        "capacity": {
+                            "minimum": "1",
+                            "maximum": "2",
+                            "default": "1"
+                        },
+                        "rules": [
+                            {
+                                "scaleAction": {
+                                    "direction": "Increase",
+                                    "type": "ChangeCount",
+                                    "value": "1",
+                                    "cooldown": "PT5M"
+                                },
+                                "metricTrigger": {
+                                    "metricName": "CpuPercentage",
+                                    "metricNamespace": "microsoft.web/serverfarms",
+                                    "metricResourceUri": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                                    "operator": "GreaterThan",
+                                    "statistic": "Average",
+                                    "threshold": 70,
+                                    "timeAggregation": "Average",
+                                    "timeGrain": "PT1M",
+                                    "timeWindow": "PT10M",
+                                    "Dimensions": [],
+                                    "dividePerInstance": false
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "notifications": [],
+                "targetResourceLocation": "West Europe"
+            },
+            "name": "[concat(parameters('hostingPlanName'), '-Autoscale')]",
+            "type": "Microsoft.Insights/autoscaleSettings"
         }
     ]
 }
