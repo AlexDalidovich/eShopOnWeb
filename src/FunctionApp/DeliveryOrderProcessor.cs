@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.WebJobs;
-using Microsoft.eShopWeb.Infrastructure.Data;
 using Microsoft.Extensions.Logging;
 
 namespace FunctionApp;

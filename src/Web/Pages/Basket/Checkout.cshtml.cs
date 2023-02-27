@@ -82,7 +82,7 @@ public class CheckoutModel : PageModel
             await sender.SendMessageAsync(new ServiceBusMessage(inputJson));
             using HttpClient httpClient = new HttpClient();
             StringContent content = new(inputJson);
-            await httpClient.PostAsync("https://e-shop-on-web-func.azurewebsites.net/api/DeliveryOrderProcessor?code=jLF39cEfvCNbB5DXPqBaLNGDIgNMQCBz6ATkTlpM9XlIAzFuxzAUJw==", content);
+            var resp = await httpClient.PostAsync("https://e-shop-on-web-func.azurewebsites.net/api/DeliveryOrderProcessor?code=jLF39cEfvCNbB5DXPqBaLNGDIgNMQCBz6ATkTlpM9XlIAzFuxzAUJw==", content);
 
             await _basketService.DeleteBasketAsync(BasketModel.Id);
         }

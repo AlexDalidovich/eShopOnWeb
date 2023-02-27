@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using Azure.Storage.Blobs;
-using Microsoft.eShopWeb.Infrastructure.Data;
 using Microsoft.Azure.Cosmos;
 using System.Net;
 using Microsoft.Extensions.Configuration;
